@@ -7,18 +7,18 @@ import tournament
 reload(tournament)
 
 
-def test_delete_matches():
+def testdeleteMatches():
     tournament.deleteMatches()
     print "1. Old matches can be deleted."
 
 
-def test_delete():
+def testDelete():
     tournament.deleteMatches()
     tournament.deletePlayers()
     print "2. Player records can be deleted."
 
 
-def test_count():
+def testCount():
     tournament.deleteMatches()
     tournament.deletePlayers()
     c = tournament.countPlayers()
@@ -31,7 +31,7 @@ def test_count():
     print "3. After deleting, tournament.countPlayers() returns zero."
 
 
-def test_register():
+def testRegister():
     tournament.deleteMatches()
     tournament.deletePlayers()
     tournament.registerPlayer("Chandra Nalaar")
@@ -43,7 +43,7 @@ def test_register():
     print "4. After registering a player, tournament.countPlayers() returns 1."
 
 
-def test_register_count_delete():
+def testRegisterCountDelete():
     tournament.deleteMatches()
     tournament.deletePlayers()
     tournament.registerPlayer("Markov Chaney")
@@ -61,7 +61,7 @@ def test_register_count_delete():
     print "5. Players can be registered and deleted."
 
 
-def test_standings_before_matches():
+def testStandingsBeforeMatches():
     tournament.deleteMatches()
     tournament.deletePlayers()
     tournament.registerPlayer("Melpomene Murray")
@@ -87,7 +87,7 @@ def test_standings_before_matches():
           "Newly registered players appear in the standings with no matches."
 
 
-def test_report_matches():
+def testReportMatches():
     tournament.deleteMatches()
     tournament.deletePlayers()
     tournament.registerPlayer("Bruno Walton")
@@ -110,7 +110,7 @@ def test_report_matches():
     print "7. After a match, players have updated standings."
 
 
-def test_pairings():
+def testPairings():
     tournament.deleteMatches()
     tournament.deletePlayers()
     tournament.registerPlayer("Twilight Sparkle")
@@ -135,21 +135,21 @@ def test_pairings():
 
 
 if __name__ == '__main__':
-    test_delete_matches()
-    test_delete()
-    test_count()
-    test_register()
-    test_register_count_delete()
-    test_standings_before_matches()
-    test_report_matches()
-    test_pairings()
+    testdeleteMatches()
+    testDelete()
+    testCount()
+    testRegister()
+    testRegisterCountDelete()
+    testStandingsBeforeMatches()
+    testReportMatches()
+    testPairings()
     print "Success!  All tests pass!"
 
-test_delete_matches()
-test_delete()
-test_count()
-test_register()
-test_register_count_delete()
-test_standings_before_matches()
-test_report_matches()
-test_pairings()
+testdeleteMatches()
+testDelete()
+testCount()
+testRegister()
+testRegisterCountDelete()
+testStandingsBeforeMatches()
+testReportMatches()
+testPairings()
