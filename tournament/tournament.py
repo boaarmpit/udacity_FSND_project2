@@ -88,25 +88,12 @@ def playerStandings():
     c = db.cursor()
     c.execute(
         """
-SELECT matches_players.id,
-       matches_players.name,
-       COUNT( matches_players.id = matches_players.winner_id
-             AND matches_players.is_draw = FALSE
-             OR NULL) AS wins,
-       --COUNT(matches_players.is_draw = TRUE
-       --      OR NULL) AS draws,
-       COUNT(matches_players.match_id) AS games
-FROM matches_players
-GROUP BY matches_players.id,
-         matches_players.name
-ORDER BY wins DESC;
---,        draws DESC;
+        SELECT * FROM standings;
         """
     )
     rows = c.fetchall()
     db.commit()
     db.close()
-
     return rows
 
 
@@ -122,8 +109,8 @@ def reportMatch(winner, loser, is_draw=False):
     c.execute(
         """
         INSERT INTO matches (tournament_id, winner_id, loser_id, is_draw)
-        VALUES (0,'{0}','{1}',{2});
-        """.format(winner, loser, is_draw)
+        VALUES (0, %s, %s, %s);
+        """, (winner, loser, is_draw)
     )
     db.commit()
     db.close()
@@ -144,25 +131,15 @@ def swissPairings():
         id2: the second player's unique id
         name2: the second player's name
     """
-    standings = playerStandings()
-    parings = []
-    for i in range(len(standings) / 2):
-        player1 = standings[2 * i]
-        player2 = standings[2 * i + 1]
-        parings.append([player1[0], player1[1], player2[0], player2[1]])
 
-    return parings
-
-
-deleteMatches()
-deletePlayers()
-registerPlayer('Tom')
-registerPlayer('Dick')
-registerPlayer('Harry')
-registerPlayer('Bob')
-reportMatch(1, 2)
-reportMatch(3, 4)
-reportMatch(2, 3, False)
-reportMatch(3, 1, True)
-
-playerStandings()
+    db = connect()
+    c = db.cursor()
+    c.execute(
+        """
+        SELECT * FROM pairings;
+        """
+    )
+    rows = c.fetchall()
+    db.commit()
+    db.close()
+    return rows
