@@ -8,9 +8,9 @@ CREATE TABLE players (
 CREATE TABLE matches (
     match_id serial primary key,
     tournament_id   integer,
-    player1_id      integer references players(id),
-    player2_id      integer references players(id),
-    result          integer
+    winner_id       integer references players(id),
+    loser_id        integer references players(id),
+    is_draw         boolean
     );
 
 CREATE VIEW matches_players AS
