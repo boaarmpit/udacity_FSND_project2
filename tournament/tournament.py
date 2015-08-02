@@ -57,7 +57,7 @@ def registerPlayer(name):
     """Adds a player to the tournament database.
 
     The database assigns a unique serial id number for the player.  (This
-    should be handled by your SQL database schema, not in your Python code.)
+    is be handled by the SQL database schema, not the Python code.)
 
     Args:
       name: the player's full name (need not be unique).
@@ -76,7 +76,7 @@ def registerPlayer(name):
 def playerStandings(return_draws=False):
     """Returns a list of the players and their win records, sorted by wins.
 
-    The first entry in the list should be the player in first place,
+    The first entry in the list is the player in first place,
     or a player tied for first place if there is currently a tie.
 
     Args:

@@ -49,7 +49,7 @@ CREATE VIEW pairings AS
                  name,
                  row_number() over () AS rnum
           FROM standings) t
-       WHERE t.rnum%2=1) player1
+       WHERE t.rnum%2=1) player1 -- Odd ranked players
     JOIN
       (SELECT t.*,
               row_number() over ()
@@ -58,4 +58,5 @@ CREATE VIEW pairings AS
                  name,
                  row_number() over () AS rnum
           FROM standings) t
-       WHERE t.rnum%2=0) player2 ON player1.row_number=player2.row_number;
+       WHERE t.rnum%2=0) player2 -- Even ranked players
+       ON player1.row_number=player2.row_number;
