@@ -4,8 +4,6 @@
 
 import tournament
 
-reload(tournament)
-
 
 def testdeleteMatches():
     tournament.deleteMatches()
