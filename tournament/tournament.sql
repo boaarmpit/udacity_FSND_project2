@@ -24,12 +24,13 @@ CREATE VIEW standings AS
        matches_players.name,
        COUNT( matches_players.id = matches_players.winner_id
              AND matches_players.is_draw = FALSE
-             OR NULL) AS wins,  --COUNT(matches_players.is_draw = TRUE OR NULL) AS draws,
-       COUNT(matches_players.match_id) AS games
+             OR NULL) AS wins,
+       COUNT(matches_players.match_id) AS games,
+       COUNT(matches_players.is_draw = TRUE OR NULL) AS draws
     FROM matches_players
     GROUP BY matches_players.id,
              matches_players.name
-    ORDER BY wins DESC; --, draws DESC;
+    ORDER BY wins DESC, draws DESC;
 
 CREATE VIEW pairings AS
     SELECT player1.id AS id1,

@@ -26,7 +26,9 @@ def deleteMatches():
 
 
 def deletePlayers():
-    """Remove all the player records from the database."""
+    """Remove all the player records from the database.
+    (Also remove all the match records from the database.)"""
+    deleteMatches()
     db = connect()
     c = db.cursor()
     c.execute(
@@ -71,26 +73,38 @@ def registerPlayer(name):
     db.close()
 
 
-def playerStandings():
+def playerStandings(return_draws=False):
     """Returns a list of the players and their win records, sorted by wins.
 
     The first entry in the list should be the player in first place,
     or a player tied for first place if there is currently a tie.
 
+    Args:
+      return_draws: set True to also return number of draws (default = False)
+
     Returns:
-      A list of tuples, each of which contains (id, name, wins, matches):
+      A list of tuples, each of which contains the following:
         id: the player's unique id (assigned by the database)
         name: the player's full name (as registered)
         wins: the number of matches the player has won
         matches: the number of matches the player has played
+        draws: the number of matches the player has drawn
+               (only returned if return_draws = True)
     """
     db = connect()
     c = db.cursor()
-    c.execute(
-        """
-        SELECT * FROM standings;
-        """
-    )
+    if not return_draws:
+        c.execute(
+            """
+            SELECT id, name, wins, games from standings;
+            """
+        )
+    else:
+        c.execute(
+            """
+            SELECT * FROM standings;
+            """
+        )
     rows = c.fetchall()
     db.commit()
     db.close()
