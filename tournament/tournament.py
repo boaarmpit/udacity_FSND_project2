@@ -122,8 +122,8 @@ def reportMatch(winner, loser, is_draw=False):
     c = db.cursor()
     c.execute(
         """
-        INSERT INTO matches (tournament_id, winner_id, loser_id, is_draw)
-        VALUES (0, %s, %s, %s);
+        INSERT INTO matches (winner_id, loser_id, is_draw)
+        VALUES (%s, %s, %s);
         """, (winner, loser, is_draw)
     )
     db.commit()
