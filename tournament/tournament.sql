@@ -1,5 +1,10 @@
--- Table definitions for the tournament project:
+-- Initialize database:
+DROP DATABASE IF EXISTS tournament;
+CREATE DATABASE tournament;
+\c tournament
 
+
+-- Define tables:
 CREATE TABLE players (
     id serial       primary key,
     name            text

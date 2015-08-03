@@ -18,7 +18,7 @@ def deleteMatches():
     """Remove all the match records from the database."""
     db, c = connect()
     query = """
-    DELETE FROM matches;
+    TRUNCATE matches;
     ALTER SEQUENCE matches_match_id_seq RESTART WITH 1;
     """
     c.execute(query)
@@ -29,10 +29,9 @@ def deleteMatches():
 def deletePlayers():
     """Remove all the player records from the database.
     (Also remove all the match records from the database.)"""
-    deleteMatches()
     db, c = connect()
     query = """
-    DELETE FROM players;
+    TRUNCATE players CASCADE;
     ALTER SEQUENCE players_id_seq RESTART WITH 1;
     """
     c.execute(query)

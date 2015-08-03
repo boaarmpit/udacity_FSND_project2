@@ -19,12 +19,12 @@ It requires the following library aside from the Python Standard Libraries:
 
 ## Usage
 
-Setup:  
-1. Create a database named *tournament* in psql.  
-2. Load the table and view definitions with `\i tournament.sql` in psql.
+Setup:
+<ol><li>Setup the database, table and view definitions with `\i tournament.sql` in psql.  
+*Warning, this will delete any existing database named "tournament".*</li>
+<li>Use `python tournament_test.py` to test the setup.</li></ol>
 
 The available functions in *tournament.py* are listed below.  
-Also see *tournament_test.py* for tests and usage examples. 
 
 ###registerPlayer(name)
 
