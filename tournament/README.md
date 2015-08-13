@@ -20,9 +20,9 @@ It requires the following library aside from the Python Standard Libraries:
 ## Usage
 
 Setup:
-<ol><li>Setup the database, table and view definitions with `\i tournament.sql` in psql.  
-*Warning, this will delete any existing database named "tournament".*</li>
-<li>Use `python tournament_test.py` to test the setup.</li></ol>
+<ol><li> Setup the database, table and view definitions with `\i tournament.sql` in psql.  
+*Warning, this will delete any existing database named "tournament".* </li>
+<li> Use `python tournament_test.py` to test the setup. </li></ol>
 
 The available functions in *tournament.py* are listed below.  
 
