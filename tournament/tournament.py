@@ -46,7 +46,7 @@ def countPlayers():
     SELECT COUNT (*) FROM players;
     """
     c.execute(query)
-    no_of_players = int(c.fetchall()[0][0])
+    no_of_players = int(c.fetchone()[0])
     db.close()
     return no_of_players
 
